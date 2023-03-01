@@ -16,7 +16,7 @@ app.use(express.static(__dirname + "public/"));
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views/");
 // Routes--------
-app.use("/personaje", require("./router/personaje"));
+app.use("/", require("./router/personaje"));
 // MongoDB
 mongoose.set('strictQuery', false);
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.9xb5kzo.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`;

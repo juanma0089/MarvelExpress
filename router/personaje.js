@@ -31,7 +31,7 @@ router.post('/', async (req,res) => {
         const personajeDB = new Personaje(body);
         //creamos un nuevo Personaje, gracias al modelo
         await personajeDB.save()
-        res.redirect('/personaje')
+        res.redirect('/')
 
     } catch (error) {
         console.error(error)

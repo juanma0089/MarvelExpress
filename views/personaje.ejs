@@ -2,7 +2,7 @@
 
 <div class="container">
 
-  <a class="btn btn-primary btn-block my-4" href="/personaje/crear"
+  <a class="btn btn-primary btn-block my-4" href="/crear"
     >Crear nuevo personaje</a
   >
 
@@ -27,20 +27,20 @@
                 <td><%= personaje.super_poder %></td>
                 <td><%= personaje.descripcion %></td>
                 <td>
-                  <a class="btn btn-warning btn-sm" href="personaje/<%= personaje._id %>">Editar</a>
+                  <a class="btn btn-warning btn-sm" href="/<%= personaje._id %>">Editar</a>
                 </td>
                 <td>
-                  <a class="btn btn-danger btn-sm" id="eliminar<%= personaje._id %>" href="personaje/<%= personaje._id %>">Eliminar</a>
+                  <a class="btn btn-danger btn-sm" id="eliminar<%= personaje._id %>" href="/<%= personaje._id %>">Eliminar</a>
                 </td>
               </tr>
               <script>
                 document.getElementById('eliminar<%= personaje._id %>').addEventListener('click', async () => {
                     try{
-                        const data = await fetch(`/personaje/<%= personaje._id %>`, {method: 'delete'})
+                        const data = await fetch(`/<%= personaje._id %>`, {method: 'delete'})
                         const res = await data.json()
                         console.log(res)
                         if(res.estado){
-                          window.location.href = '/personaje'
+                          window.location.href = '/'
                         }else {
                             console.log(res)
                         }

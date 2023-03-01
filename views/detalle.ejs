@@ -3,7 +3,7 @@
     <h1>Detalles del Personaje</h1>
     <% if (error){ %>
     <%= mensaje %>
-    <a class="btn btn-dark btn-block my-2" href="/personaje">Volver</a>
+    <a class="btn btn-dark btn-block my-2" href="/">Volver</a>
     <% } %>
     <% if (!error){ %>
         <form id="editar" data-id="<%= personaje._id %>">
@@ -26,7 +26,7 @@
             const descripcion = formEditar.elements['descripcion'].value
             const _id = formEditar.dataset.id
             
-            const data = await fetch(`/personaje/${_id}`, {
+            const data = await fetch(`/${_id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -35,7 +35,7 @@
             })
             const res = await data.json()
             if(res.estado){
-                window.location.href = '/personaje'
+                window.location.href = '/'
             }else{
                 console.log(res)
             }
