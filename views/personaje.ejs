@@ -1,0 +1,60 @@
+<%- include("template/cabecera", {tituloWeb: "Universo Marvel"}) %>
+
+<div class="container">
+
+  <a class="btn btn-success btn-block my-4" href="/personaje/crear"
+    >Crear nuevo personaje</a
+  >
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Super poder</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (arrayPersonaje.length > 0) {%>
+         <% arrayPersonaje.forEach(personaje => {%>
+
+              <tr>
+                <th scope="row"><%= personaje.id %></th>
+                <td><%= personaje.nombre %></td>
+                <td><%= personaje.super_poder %></td>
+                <td><%= personaje.descripcion %></td>
+                <td>
+                  <a class="btn btn-warning btn-sm" href="personaje/<%= personaje._id %>">Editar</a>
+                </td>
+                <td>
+                  <a class="btn btn-danger btn-sm" id="eliminar<%= personaje._id %>" href="personaje/<%= personaje._id %>">Eliminar</a>
+                </td>
+              </tr>
+              <script>
+                document.getElementById('eliminar<%= personaje._id %>').addEventListener('click', async () => {
+                    try{
+                        const data = await fetch(`/personaje/<%= personaje._id %>`, {method: 'delete'})
+                        const res = await data.json()
+                        console.log(res)
+                        if(res.estado){
+                          window.location.href = '/personaje'
+                        }else {
+                            console.log(res)
+                        }
+                    }catch(error){
+                        console.log(error)
+                    }
+                })
+              </script>
+          <% }) %> 
+        <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("template/footer") %>
+
+
